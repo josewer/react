@@ -39,4 +39,15 @@
 .tw-followCard-button:hover {
     background-color: #09f;
     transition: .3s ease background-color;
+    color: #fff;
+}
+
+.tw-followCard-button-following {
+    border: 1px solid red;
+}
+
+.tw-followCard-button-following:hover {
+    background-color: rgba(233, 82, 82, 0.897);
+    transition: .3s ease background-color;
+    color: #fff;
 }
