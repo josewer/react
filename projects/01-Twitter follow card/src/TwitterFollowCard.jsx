@@ -1,20 +1,20 @@
 import { useState } from "react"
 
-export function TwitterFollowCard({ userName = "unknow", name,  formatUserName , initialIsFollowing}) {
-
-    const avatar = `https://unavatar.io/onlyfans/${userName}`
-    const [isFollowing , setIsFollowing] = useState(initialIsFollowing)
+export function TwitterFollowCard({ userName = "unknow", name, formatUserName, initialIsFollowing, avatar }) {
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
+    const [isHovered, setIsHovered] = useState(false)
 
     const handleButton = () => {
         setIsFollowing(!isFollowing);
     };
 
-
-    const buttonClassName = isFollowing ?
-        'tw-followCard-button tw-followCard-button-following'
+    const buttonClassName = isFollowing
+        ? 'tw-followCard-button tw-followCard-button-following'
         : 'tw-followCard-button'
 
-    const textButton = isFollowing ? 'Siguiendo' : 'Seguir'    
+    const textButton = isFollowing
+        ? isHovered ? 'Dejar de seguir' : 'Siguiendo'
+        : 'Seguir'
 
     return (
         <article className='tw-followCard'>
@@ -27,7 +27,12 @@ export function TwitterFollowCard({ userName = "unknow", name,  formatUserName ,
             </header>
 
             <aside>
-                <button className={buttonClassName} onClick={handleButton}>
+                <button
+                    className={buttonClassName}
+                    onClick={handleButton}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                >
                     {textButton}
                 </button>
             </aside>
