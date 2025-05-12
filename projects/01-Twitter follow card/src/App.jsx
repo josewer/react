@@ -11,7 +11,7 @@ const users = [
     initialIsFollowing: true
   },
   {
-    userName: "Pinchiguina",
+    userName: "Pinchi",
     name: "Pinchi",
     avatar: "https://www.seguracan.es/wp-content/uploads/cache/2016/07/instalaciones-4/1404444011.jpg",
     initialIsFollowing: true
