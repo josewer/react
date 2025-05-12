@@ -1,6 +1,7 @@
 import { Children } from 'react';
 import './App.css'
 import { useState } from 'react';
+import confetti from 'canvas-confetti';
 
 const TURNS = {
   X: 'x',
@@ -93,6 +94,7 @@ function App() {
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
       setWinner(newWinner)
+      confetti()
     } else if (checkEndGame(newBoard)) {
       setWinner(false) // empate
     }
@@ -111,13 +113,13 @@ function App() {
       <button onClick={resetGame}>Reiniciar el juego</button>
       <section className='game'>
         {
-          board.map((_, index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
                 index={index}
                 updateBoard={updateBoard}>
-                {board[index]}
+                {square}
               </Square>
             )
           })
@@ -154,8 +156,6 @@ function App() {
 
     </main>
   )
-
-
 }
 
 export default App
