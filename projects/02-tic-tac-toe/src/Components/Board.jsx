@@ -1,5 +1,4 @@
 import { Square } from "./Square"
-import { useState } from "react";
 
 export const Board = ({ updateBoard , board}) => {
 

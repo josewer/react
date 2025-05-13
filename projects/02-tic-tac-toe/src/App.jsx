@@ -36,7 +36,7 @@ function App() {
     setTurn(TURNS.X)
     setWinner(null)
 
-    resetGame()
+    resetGameStorage()
   }
 
   const updateBoard = (index) => {
