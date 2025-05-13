@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
 
+const FollowMouse = () => {
   const [enable, setEnable] = useState(false)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
@@ -11,7 +11,22 @@ function App() {
     setPosition({ x: clientX - 25, y: clientY - 25 })
   }
 
+
   useEffect(() => {
+    if (enable) {
+      document.body.classList.add('no-cursor')
+      window.addEventListener('mousemove', handleMouseMove)
+    }
+  
+    return () => {
+      document.body.classList.remove('no-cursor')
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [enable])
+
+  useEffect(() => {
+
+    console.log('Montando el componente');
 
     if (enable) {
       window.addEventListener('mousemove', handleMouseMove)
@@ -23,6 +38,7 @@ function App() {
       // o cuando cambia el enable
       // Si no lo hacemos, se queda el evento y se ejecuta cada vez que se mueve el raton
       // Primero se ejecuta el return y luego el useEffect
+      console.log('Desmontando el componente');
       window.removeEventListener('mousemove', handleMouseMove)
     }
 
@@ -36,7 +52,6 @@ function App() {
 
   return (
     <>
-      <h1>Mi tercer proyecto</h1>
       <div style={{
         position: 'absolute',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -53,6 +68,17 @@ function App() {
       />
       <button onClick={handleClick}>{enable ? 'Desactivar' : 'Activar'} Seguir puntero</button>
     </>
+  )
+}
+
+
+
+function App() {
+
+  return (
+    <main>
+      <FollowMouse/>
+    </main>
   )
 }
 
