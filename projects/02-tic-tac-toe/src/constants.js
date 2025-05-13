@@ -9,8 +9,8 @@ export const WINNER_COMBOS = [
     [2, 4, 6]
   ]
 
-  
+  // Con Windows + . puedo poner los emoticonos
   export const TURNS = {
-    X: 'x',
-    O: 'o'
+    X: '❌',
+    O: '⚪'
   }
