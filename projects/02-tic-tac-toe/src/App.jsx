@@ -75,7 +75,8 @@ function App() {
 
   return (
     <main className='board'>
-      <h1>Tic tac toe</h1>
+      <h1>Jar Jar Juegos</h1>
+      <h2>Tic Tac Toe</h2>
 
       <button onClick={resetGame}>Reiniciar el juego</button>
 

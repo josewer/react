@@ -1,45 +1,32 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-
+import { getRandomFact , getRandomImg } from './services/facts'
 
 export function App() {
-
-    const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact'
-    const CAT_ENDPOINT_RANDOM_IMAGE = 'https://cataas.com/cat/says/'
-
     const [fact, setFact] = useState()
     const [imageUrl, setImageUrl] = useState()
 
     useEffect(() => {
-        fetch(CAT_ENDPOINT_RANDOM_FACT)
-            .then(res => res.json())
-            .then(data => {
-                // de esta forma lo que hago es decir que del json (data) quiero el fact.
-                // otra forma es const fact = data.fact
-                const { fact } = data
-                setFact(fact)
-            }
-            )
-    }, []
-    )
+        getRandomFact().then(setFact)
+    }, [] ) 
+
 
     useEffect(() => {
-
-        if (!fact) return
-
-        const firstWord = fact.split(' ')[0]
-        console.log(firstWord)
-
-        fetch(`${CAT_ENDPOINT_RANDOM_IMAGE}${firstWord}?size=50&color=red&json=true`)
-            .then(res => res.json())
-            .then(data => setImageUrl(data.url))
+         if (!fact) return
+        setImageUrl(null) // limpia imagen previa
+        getRandomImg(fact).then(setImageUrl)
     }, [fact])
+
+    const handleClick = () => {
+         getRandomFact().then(setFact)
+    }
 
     return (
         <main>
             <h1>App de gatitos</h1>
+            <button onClick={handleClick}>Otro gatito</button>
             {fact && <p>{fact}</p>}
-            {imageUrl && <img src={imageUrl} alt={`Imagen generada con la palabra ${fact.split(' ')[0]}`} />}
+            {imageUrl && <img width="400px" height="400px" src={imageUrl} alt={`Imagen generada con la palabra ${fact?.split(' ')[0]}`} />}
         </main>
     )
 
