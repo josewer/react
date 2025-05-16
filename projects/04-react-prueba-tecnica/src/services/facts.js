@@ -8,6 +8,7 @@ export const getRandomFact = async () => {
 
 
 export const getRandomImg = async ( {fact}) => {
+            console.log(fact)
 
     const threeWord = fact.split(' ', 3).join(' ')
 
