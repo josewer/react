@@ -8,8 +8,6 @@ export function useMovies({ search }) {
 
     useEffect(() => {
 
-        console.log('holaaa')
-
         if (search) {
             fetch(`https://www.omdbapi.com/?apikey=6578edfe&s=${search}`)
                 .then(res => res.json())
@@ -25,6 +23,16 @@ export function useMovies({ search }) {
         type: movie.Type,
         poster: movie.Poster
     })) || [];
+
+    mappedMovies.sort((a, b) => {
+        if (a.year < b.year) {
+            return -1;
+        }
+        if (a.year > b.year) {
+            return 1;
+        }
+        return 0;
+    });
 
     return { movies: mappedMovies }
 }

@@ -8,6 +8,7 @@ function ListOfMovies({ movies }) {
                     <li className="movie" key={movie.id}>
                         <h3>{movie.title}</h3>
                         <p>{movie.year}</p>
+                        <p>{movie.type}</p>
                         <img src={movie.poster} alt={movie.title} />
                     </li>
                 ))
