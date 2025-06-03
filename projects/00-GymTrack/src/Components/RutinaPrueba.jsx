@@ -19,7 +19,8 @@ export function RutinaPrueba() {
         const ejerciosNuevos = [...ejercicios]
         ejerciosNuevos[index][ca] = value
         setEjercicios(ejerciosNuevos)
-        
+    }   
+
 
     const guardarEjercicios = () => {
         localStorage.setItem("ejercicios", JSON.stringify(ejercicios));
