@@ -13,6 +13,7 @@ section.rutina h3 {
 }
 
 input[type="text"],
+input[type="password"],
 input[type="number"] {
   display: block;
   margin: 0.5rem 0;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export function RutinaPrueba() {
+export function RutinaPrueba({user , logout}) {
 
     const [ejercicios, setEjercicios] = useState( () => {
         const save = localStorage.getItem("ejercicios") 
@@ -20,7 +20,6 @@ export function RutinaPrueba() {
         ejerciosNuevos[index][ca] = value
         setEjercicios(ejerciosNuevos)
     }   
-
 
     const guardarEjercicios = () => {
         localStorage.setItem("ejercicios", JSON.stringify(ejercicios));
@@ -51,7 +50,7 @@ export function RutinaPrueba() {
                 autoClose: 3000,
                 theme: "colored",
             });
-
+            
             return;
         }
 
@@ -61,6 +60,8 @@ export function RutinaPrueba() {
             series: '',
             peso: ''
         };
+
+        console.log(user)
 
         const nuevoEjercicio = [...ejercicios, data]
         setEjercicios(nuevoEjercicio)
@@ -72,14 +73,18 @@ export function RutinaPrueba() {
         setEjercicios(nuevosEjercicios)
     }
 
+
     return (
         <>
+
+            <h2>Hola, {user}</h2>
             <input id="fecha"
                 type="date"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value) }
                 />
 
+            <button onClick={logout}>Cerrar sesion 💾</button>
             <button onClick={agregarEjercicio} >Añadir ➕</button>
             <button onClick={guardarEjercicios}>Guardar 💾</button>
 

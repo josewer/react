@@ -1,16 +1,26 @@
 import { useState } from 'react'
 import './App.css'
 import { RutinaPrueba } from './Components/RutinaPrueba'
+import Login from './Components/Login'
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [user , setUser] = useState()
+
+  const logout = () => (setUser(null)) 
 
   return (
     <>
       <main>
-        <RutinaPrueba />
+
+        {
+          user 
+              ? <RutinaPrueba user={user} logout={logout}/>
+              : <Login setUser={setUser} />
+        }
+
       </main>
     </>
   )
